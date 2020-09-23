@@ -1,30 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Cards, Charts, CountryPicker } from "./components";
 import styles from "./App-module.css";
+import Axios from "axios";
 
-import { fetchData } from "./api";
+// import { fetchData } from "./api";
 
-class App extends React.Component {
-  state = {
-    data: {},
-  };
+const App = () => {
+  const [covidData, setCovidData] = useState({});
 
-  async componentDidMount() {
-    const retrievedData = await fetchData();
-    this.setState({ data: retrievedData });
-  }
+  useEffect(() => {
+    Axios.get("https://covid19.mathdro.id/api")
+      .then((res) => {
+        console.log(res);
+        setCovidData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  console.log(covidData);
 
-  render() {
-    const { data } = this.state;
-    return (
-      <div className={styles.container}>
-        <Cards data={data} />
-        <CountryPicker />
-        <Charts />
-      </div>
-    );
-  }
-}
+  return (
+    <div className={styles.container}>
+      <Cards data={covidData} />
+      <CountryPicker />
+      <Charts />
+    </div>
+  );
+};
 
 export default App;
