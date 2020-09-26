@@ -55,7 +55,7 @@ const Cards = (props) => {
   return (
     <div className={styles.container}>
       <Grid container spacing={3} justify="center">
-        <Grid item component={Card} xs = {12} md = {3} className = {styles.card, styles.deaths}>
+        <Grid item component={Card} xs = {12} md = {3} className = {styles.card, styles.infected}>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
               Infected
