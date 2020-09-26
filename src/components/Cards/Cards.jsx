@@ -9,7 +9,6 @@ import {
 
 import {makeStyles} from '@material-ui/core/styles'
 
-import "./Cards.module.css";
 
 const useStyles = makeStyles(theme => ({
 
